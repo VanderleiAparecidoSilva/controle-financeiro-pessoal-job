@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:remove="all">Lançamentos</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div>
+    <p>
+        Usuário: <span th:text="${lancamento.usuario.nome}"></span>
+    </p>
+    <h3>Lançamentos:</h3>
+    <table style="width: 100%; border-collapse: collapse; margin: 20px 0">
+        <thead>
+        <tr>
+            <th style="text-align: center;">Tipo</th>
+            <th style="text-align: center;">Vencimento</th>
+            <th style="text-align: left;">Descrição</th>
+            <th style="text-align: center;">Valor</th>
+            <th style="text-align: center;">Parcela</th>
+            <th style="text-align: left;">Observação</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr style="border-bottom: 1px solid #ccc; border-top: 1px solid #ccc;"
+            th:each="item : ${lancamento.lancamentos}">
+            <td th:text="${item.tipo.descricao}" style="text-align: center;">tipo</td>
+            <td th:text="${#temporals.format(item.vencimento, 'dd/MM/yyyy')}" style="text-align: center;">vencimento</td>
+            <td th:text="${item.nome.nome}" style="text-align: left;">descricao</td>
+            <td th:text="${#numbers.formatDecimal(item.valorParcela, 0, 'POINT', 2, 'COMMA')}" style="text-align: right;">valorParcela</td>
+            <td th:text="${item.getParcelaAtualTotalParcela()}" style="text-align: center;">parcela</td>
+            <td th:text="${item.observacao}" style="text-align: left;">observacao</td>
+        </tr>
+        </tbody>
+    </table>
+    <p><b>
+        Valor total: <span th:text="${#numbers.formatDecimal(lancamento.valorTotal, 0, 'POINT', 2, 'COMMA')}"></span>
+    </b></p>
+    <p>
+        Controle Financeiro Pessoal - By Vanderlei - Copyright 2018
+    </p>
+</div>
+</body>
+</html>
