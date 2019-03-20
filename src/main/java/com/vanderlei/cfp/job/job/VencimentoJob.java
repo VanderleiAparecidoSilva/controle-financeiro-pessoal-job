@@ -30,17 +30,17 @@ public class VencimentoJob implements Job {
 
   @Autowired private EmailService emailService;
 
-  @Scheduled(cron = "0 0 8 * * *", zone = TIME_ZONE)
+  @Scheduled(cron = "0 0 6 * * *", zone = TIME_ZONE)
   public void buscarLancamentosVencidosManha() {
     execute();
   }
 
-    @Scheduled(cron = "0 35 16 * * *", zone = TIME_ZONE)
+    @Scheduled(cron = "0 0 14 * * *", zone = TIME_ZONE)
     public void buscarLancamentosVencidosTarde() {
         execute();
     }
 
-  @Scheduled(cron = "0 0 18 * * *", zone = TIME_ZONE)
+  @Scheduled(cron = "0 0 22 * * *", zone = TIME_ZONE)
   public void buscarLancamentosVencidosNoite() {
     execute();
   }
