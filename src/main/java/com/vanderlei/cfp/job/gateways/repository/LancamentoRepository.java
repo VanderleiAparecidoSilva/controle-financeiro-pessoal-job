@@ -23,7 +23,7 @@ public interface LancamentoRepository extends MongoRepository<Lancamento, String
   Optional<Lancamento> findByIdAndUsuarioEmail(final String id, final String email);
 
   @Transactional(readOnly = true)
-  Collection<Lancamento> findByStatusAndVencimentoBeforeOrderByUsuarioNome(
+  Collection<Lancamento> findByStatusAndVencimentoBeforeAndDataExclusaoIsNullOrderByUsuarioNome(
       final Status status, final LocalDate date);
 
   @Transactional(readOnly = true)

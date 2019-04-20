@@ -16,6 +16,6 @@ public class LancamentoGateway {
 
   public Collection<Lancamento> buscarLancamentosVencidos(
       final Status status, final LocalDate date) {
-    return repository.findByStatusAndVencimentoBeforeOrderByUsuarioNome(status, date);
+    return repository.findByStatusAndVencimentoBeforeAndDataExclusaoIsNullOrderByUsuarioNome(status, date);
   }
 }
