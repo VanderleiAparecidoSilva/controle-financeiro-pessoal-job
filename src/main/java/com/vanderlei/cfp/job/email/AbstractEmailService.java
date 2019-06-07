@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
@@ -46,7 +47,9 @@ public abstract class AbstractEmailService implements EmailService {
     mimeMessage.setHeader("Content-Type", "text/html; charset=UTF-8");
     MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
     mimeMessageHelper.setTo(obj.getUsuario().getEmail());
-    mimeMessageHelper.setCc(obj.getUsuario().getEmailCC());
+    if (!StringUtils.isEmpty(obj.getUsuario().getEmailCC())) {
+      mimeMessageHelper.setCc(obj.getUsuario().getEmailCC());
+    }
     mimeMessageHelper.setFrom(sender);
     mimeMessageHelper.setSubject(subject);
     mimeMessageHelper.setSentDate(new Date(System.currentTimeMillis()));
